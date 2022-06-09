@@ -12,7 +12,8 @@
 
     <div class="main">
             <div class="btn" v-for="(value, key) in buttons" :key="key" 
-                @click="btnClick(value)">
+                @click="btnClick(value)"
+                :class="[ value ==='=' ? 'equalBtn' : '' ]" >
                 {{ value }}
             </div>
         </div>
@@ -20,7 +21,6 @@
 </template>
 
 <script>
-
 export default {
 
     components: {
@@ -60,6 +60,7 @@ export default {
                 this.result = eval(this.previous + this.operator + this.result);
                 this.previous = "";
                 this.operator = "";
+                this.newCal = false;
             }
         },
 
@@ -130,6 +131,8 @@ export default {
     justify-content: space-around;
 }
 
+
+
 .btn {
     color: black;
     box-shadow: 2px 2px #bbb;
@@ -143,6 +146,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.equalBtn {
+    background-color: rgb(209, 201, 124);
 }
 
 .btn:hover {
